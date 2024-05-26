@@ -1,14 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="success">
-<ion-menu-button slot = "start"></ion-menu-button>
-    <ion-title>Crie Flash Cards</ion-title>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>Cadastro de FlashCards</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-  <ion-content class="ion-padding">
-  <p>Clique aqui para criar um flashcard</p> <button> Crie</button>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <!-- Campo de Pergunta -->
+    <ion-item>
+      <ion-label position="stacked">Pergunta</ion-label>
+      <ion-input type="text" [(ngModel)]="pergunta"></ion-input>
+    </ion-item>
 
-    
-  
-  </ion-content>
+    <!-- Campo de Resposta -->
+    <ion-item>
+      <ion-label position="stacked">Resposta</ion-label>
+      <ion-input type="text" [(ngModel)]="resposta"></ion-input>
+    </ion-item>
+
+    <!-- Campo de Nome do Deck -->
+    <ion-item>
+      <ion-label position="stacked">Nome do Deck</ion-label>
+      <ion-input type="text" [(ngModel)]="deckName"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!-- Botão de Cadastro -->
+  <ion-button expand="block" (click)="cadastrarFlashcard()">Cadastrar Flashcard</ion-button>
+</ion-content>
