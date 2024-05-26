@@ -1,0 +1,21 @@
+/* Estilos CSS para o conteúdo */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Definindo a altura para ocupar toda a altura da tela */
+}
+
+/* Estilos CSS para o contêiner */
+.container {
+  position: relative; /* Permitindo o posicionamento absoluto do slogan */
+  width: 100%; /* Garantindo que o contêiner tenha 100% de largura */
+}
+
+/* Estilos CSS para a imagem com texto */
+.container img {
+  display: block; /* Garantindo que a imagem seja tratada como um bloco */
+  width: 100%; /* Definindo a largura da imagem como 100% */
+  height: auto; /* Permitindo que a altura seja ajustada automaticamente para manter a proporção */
+  max-width: 100%; /* Garantindo que a imagem não ultrapasse a largura do contêiner */
+}
