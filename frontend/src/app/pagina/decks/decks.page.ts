@@ -48,7 +48,22 @@ export class DecksPage implements OnInit {
       const index = this.flashcards.indexOf(flashcard);
       if (index !== -1) {
         this.flashcards.splice(index, 1);
-}
-}
+      }
+    }
+  }
+
+  confirmUpdate(flashcard: any) {
+    if (confirm('Tem certeza que deseja atualizar este flashcard?')) {
+      const newQuestion = prompt('Digite a nova pergunta:');
+      const newAnswer = prompt('Digite a nova resposta:');
+      if (newQuestion && newAnswer) {
+        this.updateFlashcard(flashcard, newQuestion, newAnswer);
+      }
+    }
+  }
+
+  updateFlashcard(flashcard: any, newQuestion: string, newAnswer: string) {
+    flashcard.pergunta = newQuestion;
+    flashcard.resposta = newAnswer;
   }
 }

@@ -6,6 +6,9 @@ body {
     background: #222;
 }
 
+.card-wrapper {
+    margin-bottom: 40px; /* Adicionando margem entre os cartões */
+  }
 .card {
     height: 340px;
     width: 250px;
@@ -52,13 +55,23 @@ body {
 .card.virado {
     transform: rotateY(180deg);
 }
-.delete-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: red; /* Exemplo de estilo */
+.card {
+    position: relative;
+    margin-bottom: 25px; /* Adicionando margem entre os cartões */
+  }
+  
+  .button-group {
+    margin-top: auto; /* Move o grupo de botões para a parte inferior do cartão */
+  }
+  
+  
+  .delete-button,
+  .update-button {
+    background-color: red;
     color: white;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
+    margin-left: 5px; /* Adicionando margem entre os botões */
   }
+  
