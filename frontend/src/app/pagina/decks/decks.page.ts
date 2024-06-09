@@ -16,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule]
 })
 export class DecksPage implements OnInit {
-  flashcards: { id: number, pergunta: string, resposta: string }[] = [];
+  flashcards: { id: number, 
+    pergunta: string, resposta: string, deckName: string }[] = [];
 
   
 
@@ -27,7 +28,7 @@ export class DecksPage implements OnInit {
   }
 
   fetchFlashcards(): void {
-    this.http.get<{ id: number, pergunta: string, resposta: string }[]>('http://localhost:8080/all')
+    this.http.get<{ id: number, pergunta: string, resposta: string, deckName:string }[]>('http://localhost:8080/all')
       .subscribe(
         (data) => {
           this.flashcards = data;
@@ -47,23 +48,42 @@ export class DecksPage implements OnInit {
     if (confirm('Tem certeza que deseja deletar este flashcard?')) {
       const index = this.flashcards.indexOf(flashcard);
       if (index !== -1) {
-        this.flashcards.splice(index, 1);
+        // Chamada HTTP para deletar o flashcard no backend
+        this.http.delete(`http://localhost:8080/${flashcard.id}`)
+          .subscribe(
+            () => {
+              this.flashcards.splice(index, 1);
+            },
+            (error) => {
+              console.error('Error deleting flashcard:', error);
+            }
+          );
       }
     }
   }
 
   confirmUpdate(flashcard: any) {
     if (confirm('Tem certeza que deseja atualizar este flashcard?')) {
-      const newQuestion = prompt('Digite a nova pergunta:');
-      const newAnswer = prompt('Digite a nova resposta:');
-      if (newQuestion && newAnswer) {
-        this.updateFlashcard(flashcard, newQuestion, newAnswer);
+      flashcard.pergunta = prompt('Digite a nova pergunta:');
+      flashcard.resposta = prompt('Digite a nova resposta:');
+      flashcard.deckName = prompt('Digite o nome do deck:');
+
+      if (flashcard.pergunta && flashcard.resposta) {
+        this.updateFlashcard(flashcard);
       }
     }
   }
 
-  updateFlashcard(flashcard: any, newQuestion: string, newAnswer: string) {
-    flashcard.pergunta = newQuestion;
-    flashcard.resposta = newAnswer;
+  updateFlashcard(flashcard:any) {
+    this.http.put(`http://localhost:8080/` + flashcard.id, flashcard )
+      .subscribe(
+        () => {
+          // Atualiza os flashcards após a atualização bem-sucedida
+          this.fetchFlashcards();
+        },
+        (error) => {
+          console.error('Error updating flashcard:', error);
+        }
+      );
   }
 }
