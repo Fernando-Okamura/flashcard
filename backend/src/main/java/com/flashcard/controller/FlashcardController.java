@@ -77,7 +77,15 @@ public class FlashcardController {
     }
 
 
+    @GetMapping("/decks")
+    public ResponseEntity<List<String>> getDistinctDeckNames() {
+        List<String> distinctDeckNames = flashCardService.getDistinctDeckNames();
+        return new ResponseEntity<>(distinctDeckNames, HttpStatus.OK);
+    }
 }
+
+
+
 
 
 
