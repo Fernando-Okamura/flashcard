@@ -43,6 +43,7 @@ public class FlashCardService {
             FlashCard flashCard = existingFlashCard.get();
             flashCard.setPergunta(updatedFlashCard.getPergunta());
             flashCard.setResposta(updatedFlashCard.getResposta());
+            flashCard.setDeckName(updatedFlashCard.getDeckName());
             return flashCardRepository.save(flashCard);
         } else {
             // Tratar o caso em que o FlashCard não é encontrado

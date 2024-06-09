@@ -56,8 +56,9 @@ public class FlashcardController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<FlashCard> updateFlashCard(@PathVariable Integer id, @RequestBody FlashCard updatedFlashCard) {
-        FlashCard updatedCard = flashCardService.updateFlashCard(id, updatedFlashCard);
+    public ResponseEntity<FlashCard> updateFlashCard(@PathVariable Integer id,
+                                                     @RequestBody FlashCard flashCard) {
+        FlashCard updatedCard = flashCardService.updateFlashCard(id, flashCard);
         if (updatedCard != null) {
             return new ResponseEntity<>(updatedCard, HttpStatus.OK);
         } else {
@@ -66,8 +67,18 @@ public class FlashcardController {
     }
 
     @DeleteMapping("/excluir/{flashCardId}")
-    public void excluirFlashcard(@PathVariable Integer flashCardId) {
+    public String excluirFlashcard(@PathVariable Integer flashCardId) {
         flashCardService.deleteFlashCard(flashCardId);
+        //if (excluirFlashcard = true) {
+        //     System.out.println("FlashCard excluído com sucesso!");
+        //  } else {
+        //      System.out.println("Não foi possível deletar o cartão");
+        //    }
+        // }
+        return "";
     }
 }
+
+
+
 

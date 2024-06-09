@@ -49,7 +49,7 @@ export class DecksPage implements OnInit {
       const index = this.flashcards.indexOf(flashcard);
       if (index !== -1) {
         // Chamada HTTP para deletar o flashcard no backend
-        this.http.delete(`http://localhost:8080/${flashcard.id}`)
+        this.http.delete(`http://localhost:8080/excluir/${flashcard.id}`)
           .subscribe(
             () => {
               this.flashcards.splice(index, 1);
@@ -61,7 +61,6 @@ export class DecksPage implements OnInit {
       }
     }
   }
-
   confirmUpdate(flashcard: any) {
     if (confirm('Tem certeza que deseja atualizar este flashcard?')) {
       flashcard.pergunta = prompt('Digite a nova pergunta:');
