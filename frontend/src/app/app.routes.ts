@@ -30,5 +30,11 @@ export const routes: Routes = [
   {
     path: 'cards',
     loadComponent: () => import('./pagina/cards/cards.page').then( m => m.CardsPage)
+  },
+  {
+    path: 'decks',
+    loadComponent: () => import('./pagina/decks/decks.page').then( m => m.DecksPage)
   }
+
+  
 ];
