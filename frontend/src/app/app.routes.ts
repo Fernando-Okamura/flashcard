@@ -28,7 +28,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pagina/crie/crie.page').then( m => m.CriePage)
   },
   {
-    path: 'decks',
-    loadComponent: () => import('./pagina/decks/decks.page').then( m => m.DecksPage)
+    path: 'cards',
+    loadComponent: () => import('./pagina/cards/cards.page').then( m => m.CardsPage)
   }
 ];

@@ -6,16 +6,16 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-decks',
-  templateUrl: './decks.page.html',
-  styleUrls: ['./decks.page.scss'],
+  selector: 'app-cards',
+  templateUrl: './cards.page.html',
+  styleUrls: ['./cards.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, IonicModule,
     CommonModule,
     FormsModule,
     HttpClientModule]
 })
-export class DecksPage implements OnInit {
+export class CardsPage implements OnInit {
   flashcards: { id: number, 
     pergunta: string, resposta: string, deckName: string }[] = [];
 
