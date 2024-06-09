@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 export class DecksPage implements OnInit {
   flashcards: { id: number, pergunta: string, resposta: string }[] = [];
 
+  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -41,4 +43,10 @@ export class DecksPage implements OnInit {
   toggleCardRotation(cardId: string) {
     this.isCardFlipped[cardId] = !this.isCardFlipped[cardId];
   }
+  deleteFlashcard(flashcard: any) {
+    const index = this.flashcards.indexOf(flashcard);
+    if (index !== -1) {
+      this.flashcards.splice(index, 1);
+    }
 }
+  }
