@@ -3,7 +3,6 @@ package com.flashcard.service;
 import com.flashcard.dao.FlashCard;
 import com.flashcard.dao.FlashCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,7 +50,8 @@ public class FlashCardService {
         }
     }
 
-    public void deleteFlashCard(Integer id) {
+    public FlashCard deleteFlashCard(Integer id) {
         flashCardRepository.deleteById(id);
+        return null;
     }
 }

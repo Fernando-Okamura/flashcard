@@ -5,7 +5,9 @@ body {
     align-items: center;
     background: #222;
 }
-
+.card-wrapper {
+    margin-bottom: 40px; /* Adicionando margem entre os cartões */
+}
 .card {
     height: 340px;
     width: 250px;
@@ -52,3 +54,7 @@ body {
 .card.virado {
     transform: rotateY(180deg);
 }
+.card {
+    position: relative;
+    margin-bottom: 25px; /* Adicionando margem entre os cartões */
+  }
