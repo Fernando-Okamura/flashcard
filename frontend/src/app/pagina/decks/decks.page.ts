@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
 })
 export class DecksPage implements OnInit {
   decks: string[] = [];
+  flashcards: { id: number; pergunta: string; resposta: string; }[] = [];
 
   constructor(
     private navCtrl: NavController,
@@ -38,6 +39,16 @@ export class DecksPage implements OnInit {
   }
 
   goToDeck(deckName: string) {
-    this.navCtrl.navigateForward(`/deck/${deckName}`);
+    this.navCtrl.navigateForward(`/deckName/${deckName}`); // se isso aqui muda de aba
+    // Tem que preencher a nova aba com o que vier na chamada do backend
+    this.http.get<{ id: number, pergunta: string, resposta: string }[]>('http://localhost:8080/deckName/'+ deckName)
+      .subscribe(
+        (data) => {
+          this.flashcards = data;
+        },
+        (error) => {
+          console.error('Error:', error);
+        }
+      );
   }
 }
