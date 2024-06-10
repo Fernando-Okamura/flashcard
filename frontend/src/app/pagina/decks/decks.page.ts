@@ -2,19 +2,42 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-decks',
   templateUrl: './decks.page.html',
   styleUrls: ['./decks.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, IonicModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule]
 })
 export class DecksPage implements OnInit {
+  decks: string[] = [];
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
+    this.loadDecks();
   }
 
+  loadDecks() {
+    this.http.get<any[]>('http://localhost:8080/decks')
+      .subscribe((decks: any[]) => {
+        this.decks = decks;
+      });
+  }
+
+  goToDeck(deckName: string) {
+    this.navCtrl.navigateForward(`/deck/${deckName}`);
+  }
 }

@@ -19,7 +19,7 @@ export class AppComponent {
     { title: 'Matemática', url: '/matematica', icon: 'calculator' },
     { title: 'Crie Deck', url: '/crie', icon: 'reader' },
     { title: 'Cards', url: '/cards', icon: 'documents' },
-    { title: 'Decks', url: '/decks', icon: 'documents' }
+    { title: 'Decks', url: '/decks', icon: 'documents' },
 
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
