@@ -7,7 +7,8 @@
 
 
 <ion-content>
-  <ion-item>Lista de todos os decks! Clique para acessar as cartas:</ion-item>
+  <ion-item class ="lista">Lista de todos os decks </ion-item>
+    <h1>Clique para acessar as cartas:</h1>
   <ion-list>
     <ion-item *ngFor="let deckName of decks" (click)="goToDeck(deckName)">
       <ion-label>{{ deckName }}</ion-label>
