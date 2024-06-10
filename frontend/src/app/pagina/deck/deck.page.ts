@@ -16,23 +16,30 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule]
 })
+export class DeckPage implements OnInit {
 
-export class DeckPage  implements OnInit {
-toggleFlip() {
-throw new Error('Method not implemented.');
-}
 
-  deckName: any;
+
+  deckName!: string;
+  flashcards: { id: number, pergunta: string, resposta: string }[] = [];
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.deckName = params.get('deckName');
+      this.deckName = params.get('deckName')!;
+      const flashcardsString = params.get('flashcards');
+      if (flashcardsString) {
+        this.flashcards = JSON.parse(flashcardsString);
+      } else {
+        this.flashcards = [];
+      }
     });
     
   }
-  
+  isCardFlipped: { [key: string]: boolean } = { card1: false, card2: false };
 
+  toggleCardRotation(cardId: string) {
+    this.isCardFlipped[cardId] = !this.isCardFlipped[cardId];
+  }
 }
-

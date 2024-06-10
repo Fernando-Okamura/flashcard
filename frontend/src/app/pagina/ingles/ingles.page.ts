@@ -35,7 +35,6 @@ export class InglesPage implements OnInit {
         }
       );
   }
-    
   isCardFlipped: { [key: string]: boolean } = { card1: false, card2: false };
 
   toggleCardRotation(cardId: string) {

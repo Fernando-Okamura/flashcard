@@ -4,9 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-decks',
@@ -18,13 +16,15 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     HttpClientModule]
 })
+
 export class DecksPage implements OnInit {
   decks: string[] = [];
   flashcards: { id: number; pergunta: string; resposta: string; }[] = [];
 
   constructor(
     private navCtrl: NavController,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -39,16 +39,20 @@ export class DecksPage implements OnInit {
   }
 
   goToDeck(deckName: string) {
-    this.navCtrl.navigateForward(`/deckName/${deckName}`); // se isso aqui muda de aba
-    // Tem que preencher a nova aba com o que vier na chamada do backend
     this.http.get<{ id: number, pergunta: string, resposta: string }[]>('http://localhost:8080/deckName/'+ deckName)
       .subscribe(
-        (data) => {
+          (data) => {
           this.flashcards = data;
+          this.router.navigate(['/deck', { deckName: deckName, flashcards: data }]);
         },
         (error) => {
           console.error('Error:', error);
         }
       );
   }
+  isCardFlipped: { [key: string]: boolean } = { card1: false, card2: false };
+
+  toggleCardRotation(cardId: string) {
+    this.isCardFlipped[cardId] = !this.isCardFlipped[cardId];
+}
 }
